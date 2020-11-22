@@ -1,0 +1,108 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useEffect, useState } from "react";
+import HideNav from "./HideNav";
+// import ogoImage from '../../../public/images/stylefolkslogo.png'
+
+export default function Nav() {
+  const [navData, setNavData] = useState({});
+  const [navKeys, setNavKeys] = useState([]);
+
+  useEffect(() => {
+    fetch("/data/data.json", {})
+      .then((res) => res.json())
+      .then((res) => {
+        setNavData(res["nav-category"]);
+        setNavKeys(Object.keys(res["nav-category"]));
+      });
+  }, []);
+
+  return (
+    <NavContainer>
+      <LoginWrapper>
+        <span>Login</span>
+        <span>SignUp</span>
+      </LoginWrapper>
+      <NavWrapper>
+        {/* <LogoImage
+          alt="Loog"
+          src="https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png"
+        /> */}
+        <LogoImage />
+        <ul>
+          {navKeys?.map((el) => (
+            <li>{el}</li>
+          ))}
+        </ul>
+      </NavWrapper>
+
+      <HideNavWrapper>
+        <HideNav navData={navData} navKeys={navKeys} />
+      </HideNavWrapper>
+    </NavContainer>
+  );
+}
+
+const NavContainer = styled.nav`
+  width: 100vw;
+  min-height: 140px;
+  background-color: white;
+  font-size: 1rem;
+  color: gray;
+`;
+
+const HideNavWrapper = styled.div`
+  display: none;
+`;
+
+const LogoImage = styled.div`
+  background-image: url("https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png");
+  background-position: center;
+  width: 300px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+const LoginWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  margin: 10px 0;
+  span {
+    margin: 0 20px;
+  }
+`;
+
+const NavWrapper = styled.section`
+  width: 90%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  font-size: 1rem;
+
+  ul {
+    display: flex;
+    width: 70%;
+    justify-content: space-evenly;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+
+    li {
+      border-bottom: 2px solid white;
+      transition: all 0.5s ease-in-out;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      padding: 1em 0;
+
+      &:hover {
+        border-bottom: 2px solid #b5b5b5;
+        color: olive;
+      }
+    }
+  }
+`;

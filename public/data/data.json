@@ -1,0 +1,10 @@
+{
+  "nav-category": {
+    "Total": ["FreeBoard", "Photo", "OOTD", "Best", "Sales", "Product"],
+    "Classic": ["FreeBoard", "Photo", "OOTD", "Best", "Sales", "Product"],
+    "Casual": ["FreeBoard", "Photo", "OOTD", "Best", "Sales", "Product"],
+    "Street": ["FreeBoard", "Photo", "OOTD", "Best", "Sales", "Product"],
+    "Vintage": ["FreeBoard", "Photo", "OOTD", "Best", "Sales", "Product"],
+    "YouTube": ["최겨울", "호호시", "핏더사이즈"]
+  }
+}
