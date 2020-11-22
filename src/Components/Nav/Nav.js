@@ -25,39 +25,44 @@ export default function Nav() {
         <span>SignUp</span>
       </LoginWrapper>
       <NavWrapper>
-        <LogoImage
+        {/* <LogoImage
           alt="Loog"
           src="https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png"
-        />
+        /> */}
+        <LogoImage />
         <ul>
           {navKeys?.map((el) => (
             <li>{el}</li>
           ))}
         </ul>
       </NavWrapper>
-      <HideNav navData={navData} navKeys={navKeys} />
+
+      <HideNavWrapper>
+        <HideNav navData={navData} navKeys={navKeys} />
+      </HideNavWrapper>
     </NavContainer>
   );
 }
 
 const NavContainer = styled.nav`
   width: 100vw;
-  height: 10vh;
   min-height: 140px;
-  /* background-color: rgba(255, 255, 255, 0.96); */
   background-color: white;
   font-size: 1rem;
   color: gray;
-  /* margin: auto 0; */
-
-  /* position: fixed;
-  top: 0;
-  left: 0; */
 `;
 
-const LogoImage = styled.img`
-  width: 120px;
-  height: 140px;
+const HideNavWrapper = styled.div`
+  display: none;
+`;
+
+const LogoImage = styled.div`
+  background-image: url("https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png");
+  background-position: center;
+  width: 300px;
+  height: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
 `;
 
 const LoginWrapper = styled.div`
@@ -73,17 +78,31 @@ const NavWrapper = styled.section`
   width: 90%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-  font-size: 1.5rem;
+  font-size: 1rem;
 
   ul {
     display: flex;
-    width: 100%;
+    width: 70%;
     justify-content: space-evenly;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+
     li {
-      margin: 0 10px;
+      border-bottom: 2px solid white;
+      transition: all 0.5s ease-in-out;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      padding: 1em 0;
+
+      &:hover {
+        border-bottom: 2px solid #b5b5b5;
+        color: olive;
+      }
     }
   }
 `;
