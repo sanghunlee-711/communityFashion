@@ -8,6 +8,9 @@ import HideNav from "./HideNav";
 export default function Nav() {
   const [navData, setNavData] = useState({});
   const [navKeys, setNavKeys] = useState([]);
+  const [hideNavData, setHideNavData] = useState([]);
+  const [eachKey, setEachKey] = useState("");
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     fetch("/data/data.json", {})
@@ -18,28 +21,45 @@ export default function Nav() {
       });
   }, []);
 
+  const showNavData = (key) => {
+    setHideNavData(navData[key]);
+    setEachKey(key);
+    setToggle(true);
+    console.log(toggle);
+  };
+
+  const toggleNav = () => {
+    setToggle(false);
+    console.log(toggle);
+  };
+
   return (
     <NavContainer>
       <LoginWrapper>
         <span>Login</span>
         <span>SignUp</span>
       </LoginWrapper>
-      <NavWrapper>
+      <LogoImage />
+      <NavWrapper onMouseLeave={toggleNav}>
         {/* <LogoImage
           alt="Loog"
           src="https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png"
         /> */}
-        <LogoImage />
-        <ul>
-          {navKeys?.map((el) => (
-            <li>{el}</li>
+        <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
+          {navKeys?.map((el, index) => (
+            <li key={el + index}>{el}</li>
           ))}
-        </ul>
+        </NavKeyWord>
+        <HidNavWrapper>
+          <HideNav
+            navData={navData}
+            navKeys={navKeys}
+            eachKey={eachKey}
+            hideNavData={hideNavData}
+            toggle={toggle}
+          />
+        </HidNavWrapper>
       </NavWrapper>
-
-      <HideNavWrapper>
-        <HideNav navData={navData} navKeys={navKeys} />
-      </HideNavWrapper>
     </NavContainer>
   );
 }
@@ -52,8 +72,10 @@ const NavContainer = styled.nav`
   color: gray;
 `;
 
-const HideNavWrapper = styled.div`
-  display: none;
+const HidNavWrapper = styled.div`
+  position: relative;
+  width: 60vw;
+  margin: 0 auto;
 `;
 
 const LogoImage = styled.div`
@@ -63,6 +85,29 @@ const LogoImage = styled.div`
   height: 120px;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 0 auto;
+`;
+const NavKeyWord = styled.ul`
+  display: flex;
+  width: 70%;
+  justify-content: space-evenly;
+  margin-bottom: 2vh;
+  margin-top: 1vh;
+  position: relative;
+
+  li {
+    border-bottom: 2px solid white;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding: 1em 0;
+
+    &:hover {
+      border-bottom: 2px solid #b5b5b5;
+      color: olive;
+    }
+  }
 `;
 
 const LoginWrapper = styled.div`
@@ -83,26 +128,4 @@ const NavWrapper = styled.section`
   justify-content: space-between;
   margin: 0 auto;
   font-size: 1rem;
-
-  ul {
-    display: flex;
-    width: 70%;
-    justify-content: space-evenly;
-    margin-bottom: 2vh;
-    margin-top: 1vh;
-
-    li {
-      border-bottom: 2px solid white;
-      transition: all 0.5s ease-in-out;
-      width: 100%;
-      text-align: center;
-      cursor: pointer;
-      padding: 1em 0;
-
-      &:hover {
-        border-bottom: 2px solid #b5b5b5;
-        color: olive;
-      }
-    }
-  }
 `;
