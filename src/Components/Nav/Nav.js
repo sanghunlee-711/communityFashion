@@ -74,8 +74,8 @@ const NavContainer = styled.nav`
 
 const HidNavWrapper = styled.div`
   position: relative;
-  width: 60vw;
-  margin: 0 auto;
+  width: 100vw;
+  /* margin: 0 auto; */
 `;
 
 const LogoImage = styled.div`
