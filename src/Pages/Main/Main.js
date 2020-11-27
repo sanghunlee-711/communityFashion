@@ -62,7 +62,6 @@ const MainContainer = styled.main`
 const BigContents = styled.div`
   width: 30vw;
   height: 80vh;
-  margin: 2vh auto;
   img {
     width: 100%;
     height: 100%;
@@ -77,7 +76,6 @@ const SmallContentsWrapper = styled.section`
   justify-content: flex-start;
   flex-wrap: wrap;
   width: 50vw;
-  margin: 2vh 0;
   /* width: 30vw;
   height: 40vh; */
 `;
@@ -91,6 +89,7 @@ const SamllContentsTitle = styled.span`
 const SmallContentsId = styled(SamllContentsTitle)`
   font-size: 0.8rem;
   cursor: pointer;
+  justify-content: space-around;
 `;
 
 const IdTitleDivider = styled.div`
@@ -101,11 +100,15 @@ const IdTitleDivider = styled.div`
 
 const SmallContentsContents = styled.span`
   color: gray;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 `;
 
 const SmallContents = styled.div`
   width: 20vw;
-  margin: auto;
+  margin: 0 auto;
   img {
     width: 100%;
     height: 50vh;
