@@ -6,7 +6,9 @@ export default function HideNav(props) {
 
   return (
     <HideNavContainer toggle={toggle}>
-      <HideNavTitle>{eachKey}</HideNavTitle>
+      <HideNavTitle>
+        <SmallWrapper>{eachKey}</SmallWrapper>
+      </HideNavTitle>
       <KeyWordWrapper>
         {hideNavData?.map((el, index) => (
           <li key={hideNavData[index]}>{el}</li>
@@ -30,12 +32,19 @@ const HideNavContainer = styled.section`
   }
 `;
 
-const HideNavTitle = styled.span`
+const HideNavTitle = styled.div`
   width: 100%;
   text-align: center;
-  display: block;
-  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+`;
+
+const SmallWrapper = styled.span`
+  border: 1px solid #b5b5b5;
   border-radius: 3px;
+  width: 20%;
+  background-color: #b5b5b5;
+  color: white;
 `;
 
 const KeyWordWrapper = styled.ul`
@@ -43,11 +52,9 @@ const KeyWordWrapper = styled.ul`
     text-align: center;
     margin: 0.5vh 0;
     transition: all 0.5s ease-in-out;
-    border: 1px solid white;
-
+    color: #b5b5b5;
     &:hover {
-      border: 1px solid gray;
-      border-radius: 3px;
+      color: black;
     }
   }
 `;

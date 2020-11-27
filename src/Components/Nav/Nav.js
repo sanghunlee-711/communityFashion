@@ -74,8 +74,8 @@ const NavContainer = styled.nav`
 
 const HidNavWrapper = styled.div`
   position: relative;
-  width: 60vw;
-  margin: 0 auto;
+  width: 100vw;
+  /* margin: 0 auto; */
 `;
 
 const LogoImage = styled.div`
@@ -89,7 +89,7 @@ const LogoImage = styled.div`
 `;
 const NavKeyWord = styled.ul`
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: space-evenly;
   margin-bottom: 2vh;
   margin-top: 1vh;
@@ -120,7 +120,7 @@ const LoginWrapper = styled.div`
 `;
 
 const NavWrapper = styled.section`
-  width: 90%;
+  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
