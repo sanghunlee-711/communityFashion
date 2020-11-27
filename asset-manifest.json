@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/communityFashion/static/js/main.fb3480de.chunk.js",
+    "main.js.map": "/communityFashion/static/js/main.fb3480de.chunk.js.map",
+    "runtime-main.js": "/communityFashion/static/js/runtime-main.7fe5bcca.js",
+    "runtime-main.js.map": "/communityFashion/static/js/runtime-main.7fe5bcca.js.map",
+    "static/js/2.b0a1a6f7.chunk.js": "/communityFashion/static/js/2.b0a1a6f7.chunk.js",
+    "static/js/2.b0a1a6f7.chunk.js.map": "/communityFashion/static/js/2.b0a1a6f7.chunk.js.map",
+    "static/js/3.e7daaf39.chunk.js": "/communityFashion/static/js/3.e7daaf39.chunk.js",
+    "static/js/3.e7daaf39.chunk.js.map": "/communityFashion/static/js/3.e7daaf39.chunk.js.map",
+    "index.html": "/communityFashion/index.html",
+    "static/js/2.b0a1a6f7.chunk.js.LICENSE.txt": "/communityFashion/static/js/2.b0a1a6f7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7fe5bcca.js",
+    "static/js/2.b0a1a6f7.chunk.js",
+    "static/js/main.fb3480de.chunk.js"
+  ]
+}
