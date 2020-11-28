@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import SmallContents from "../../Components/Contents/SmallContents";
 
 export default function Main() {
   const [mainData, setMainData] = useState([]);
 
   useEffect(() => {
-    fetch("/data/data.json", {})
+    const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
+
+    fetch(`${BaseURL}/data/data.json`, {})
       .then((res) => res.json())
       .then((res) => setMainData(res["main-data"]));
   }, []);
@@ -15,34 +18,16 @@ export default function Main() {
     <MainContainer>
       <BigContentsWrapper>
         {mainData["big-data"]?.map((el, index) => (
-          <BigContents>
+          <BigContents key={el.title + index}>
             <img alt="bigPhoto" src={el["image-src"]} />
           </BigContents>
         ))}
       </BigContentsWrapper>
       <SmallContentsWrapper>
-        {mainData["small-data"]?.map((el) => (
-          <SmallContents>
-            <img alt="smallPicture" src={el["image-src"]} />
-            <SmallContentsTextWrapper>
-              <IdTitleDivider>
-                <SamllContentsTitle>{el.title}</SamllContentsTitle>
-                <SmallContentsId>{el["user-id"]}</SmallContentsId>
-              </IdTitleDivider>
-              <SmallContentsContents>{el.contents}</SmallContentsContents>
-            </SmallContentsTextWrapper>
-          </SmallContents>
+        {mainData["small-data"]?.map((el, index) => (
+          <SmallContents smallData={el} key={el.title + index} />
         ))}
       </SmallContentsWrapper>
-      {/* <SmallContents>
-        <img
-          alt="smallPicture"
-          src="https://cdn.shopify.com/s/files/1/0305/5853/files/modern_classic_1024x1024.jpg?v=1538508496"
-        />
-        <span>Title</span>
-        <span>specific data</span>
-        <span>contents</span>
-      </SmallContents> */}
     </MainContainer>
   );
 }
@@ -62,6 +47,7 @@ const MainContainer = styled.main`
 const BigContents = styled.div`
   width: 30vw;
   height: 80vh;
+  margin-top: 1vh;
   img {
     width: 100%;
     height: 100%;
@@ -70,55 +56,8 @@ const BigContents = styled.div`
 
 const SmallContentsWrapper = styled.section`
   display: flex;
-  /* flex-direction: column; */
-  /* justify-content: space-evenly; */
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   width: 50vw;
-  /* width: 30vw;
-  height: 40vh; */
-`;
-
-const SamllContentsTitle = styled.span`
-  font-size: 1.2rem;
-  text-align: center;
-  margin: 0.2rem;
-`;
-
-const SmallContentsId = styled(SamllContentsTitle)`
-  font-size: 0.8rem;
-  cursor: pointer;
-  justify-content: space-around;
-`;
-
-const IdTitleDivider = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-const SmallContentsContents = styled.span`
-  color: gray;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 100%;
-`;
-
-const SmallContents = styled.div`
-  width: 20vw;
-  margin: 0 auto;
-  img {
-    width: 100%;
-    height: 50vh;
-  }
-`;
-
-const SmallContentsTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1vh 0;
 `;

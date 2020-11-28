@@ -1,17 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export default function HideNav(props) {
-  const { navData, navKeys, hideNavData, eachKey, toggle } = props;
+  const { navData, navKeys, hideNavData, eachKey, toggle, toggleNav } = props;
 
   return (
     <HideNavContainer toggle={toggle}>
       <HideNavTitle>
         <SmallWrapper>{eachKey}</SmallWrapper>
       </HideNavTitle>
-      <KeyWordWrapper>
+      <KeyWordWrapper onClick={toggleNav}>
         {hideNavData?.map((el, index) => (
-          <li key={hideNavData[index]}>{el}</li>
+          <Link to={`/menu/${eachKey}/${el}`}>
+            <li key={hideNavData[index]}>{el}</li>
+          </Link>
         ))}
       </KeyWordWrapper>
     </HideNavContainer>
