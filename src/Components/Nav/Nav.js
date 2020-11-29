@@ -13,7 +13,8 @@ export default function Nav() {
   const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
-    fetch("/data/data.json", {})
+    const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
+    fetch(`${BaseURL}/data/data.json`, {})
       .then((res) => res.json())
       .then((res) => {
         setNavData(res["nav-category"]);
@@ -39,15 +40,15 @@ export default function Nav() {
         <span>Login</span>
         <span>SignUp</span>
       </LoginWrapper>
-      <LogoImage />
+      <Link to="/">
+        <LogoImage />
+      </Link>
       <NavWrapper onMouseLeave={toggleNav}>
-        {/* <LogoImage
-          alt="Loog"
-          src="https://media.vlpt.us/images/cloudlee711/post/f57ac95c-91ec-416d-8aad-6112b6369eee/stylefolkslogo.png"
-        /> */}
         <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
           {navKeys?.map((el, index) => (
-            <li key={el + index}>{el}</li>
+            <li key={el + index}>
+              <Link to={`/${el === "Total" ? "" : el}`}>{el} </Link>
+            </li>
           ))}
         </NavKeyWord>
         <HidNavWrapper>
@@ -57,6 +58,7 @@ export default function Nav() {
             eachKey={eachKey}
             hideNavData={hideNavData}
             toggle={toggle}
+            toggleNav={toggleNav}
           />
         </HidNavWrapper>
       </NavWrapper>
