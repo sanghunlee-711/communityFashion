@@ -52,6 +52,14 @@ const SamllContainer = styled.div`
     width: 100%;
     height: 50vh;
   }
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 50vh;
+    }
+    margin: 1vh 0;
+  }
 `;
 
 const SmallContentsTextWrapper = styled.div`
