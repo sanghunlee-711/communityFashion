@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import HideNav from "./HideNav";
-import ogoImage from "../../data/images/stylefolkslogo.png";
 
 export default function Nav() {
   const [navData, setNavData] = useState({});
@@ -62,6 +61,7 @@ export default function Nav() {
                 keyElements={keyElements}
                 burgerDetail={burgerDetail}
               >
+                <Link to={`/menu/${keyElements}/total`}>{keyElements}</Link>
                 {navData[keyElements].map((detail, index) => (
                   <Link
                     to={`/menu/${keyElements}/${detail}`}
@@ -74,13 +74,21 @@ export default function Nav() {
               </BurgerDetailedNav>
             </li>
           ))}
-          <li>Login</li>
-          <li>SignUp</li>
+          <li>
+            <Link to="/login" onClick={burgerToggling}>
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to="/signup" onClick={burgerToggling}>
+              SignUp
+            </Link>
+          </li>
         </ul>
       </BurgerNav>
       <LoginWrapper>
-        <span>Login</span>
-        <span>SignUp</span>
+        <Link to="/login">Login</Link>
+        <Link to="/signup">SignUp</Link>
       </LoginWrapper>
       <Link to="/">
         <LogoImage />
@@ -89,7 +97,7 @@ export default function Nav() {
         <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
           {navKeys?.map((el, index) => (
             <li key={el + index}>
-              <Link to={`/${el === "Total" ? "" : el}`}>{el} </Link>
+              <Link to={`/menu/${el}/total`}>{el} </Link>
             </li>
           ))}
         </NavKeyWord>
@@ -117,7 +125,7 @@ const NavContainer = styled.nav`
 `;
 
 const BurgerTitleKey = styled.span`
-  color: red;
+  font-size: 1.8rem;
 `;
 
 const BurgerNav = styled.nav`
@@ -138,8 +146,15 @@ const BurgerNav = styled.nav`
 `;
 
 const BurgerDetailedNav = styled.ul`
-  display: ${(props) =>
-    props.burgerDetail === props.keyElements ? "static" : "none"};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  transition: height 0.5s ease-in-out;
+  visibility: ${(props) =>
+    props.burgerDetail === props.keyElements ? "visible" : "hidden"};
+  height: ${(props) =>
+    props.burgerDetail === props.keyElements ? "30vh" : " 0vh"};
+  }
 `;
 const QuitButton = styled.div`
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i7Fb7jCfqGSrjSYZpm6z5EJ-QGDcRuHNqA&usqp=CAU");
@@ -223,7 +238,7 @@ const LoginWrapper = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0;
-    span {
+    a {
       display: block;
       width: 100%;
       margin: 0;
@@ -232,7 +247,7 @@ const LoginWrapper = styled.div`
       line-height: 2rem;
       border: 1px solid black;
     }
-    span:nth-child(1) {
+    a:nth-child(1) {
       border-right-color: white;
     }
   }

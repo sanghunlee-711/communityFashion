@@ -18,7 +18,12 @@ function Menu(props) {
       <MenuTitle>
         <span>{props.match.params.menuKey}</span>
         <span> Of</span>
-        <span>{props.match.params.menuId}</span>
+        <span>
+          {props.match.params.menuId === undefined ||
+          props.match.params.menuId === null
+            ? "Total"
+            : props.match.params.menuId}
+        </span>
       </MenuTitle>
       <MenuSmallContentsWrapper>
         {menuData["small-data"]?.map((el, index) => (
