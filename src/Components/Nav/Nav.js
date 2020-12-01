@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import HideNav from "./HideNav";
-// import ogoImage from '../../../public/images/stylefolkslogo.png'
+import ogoImage from "../../data/images/stylefolkslogo.png";
 
 export default function Nav() {
   const [navData, setNavData] = useState({});
@@ -21,20 +21,8 @@ export default function Nav() {
       .then((res) => {
         setNavData(res["nav-category"]);
         setNavKeys(Object.keys(res["nav-category"]));
-        // MakeBooleanData();
       });
   }, []);
-
-  // const MakeBooleanData = () => {
-  //   navKeys.map((key) =>
-  //     setNavData(
-  //       navData[key].map((detail) => ({
-  //         ...detail,
-  //         active: false,
-  //       }))
-  //     )
-  //   );
-  // };
 
   const showNavData = (key) => {
     setHideNavData(navData[key]);
@@ -86,6 +74,8 @@ export default function Nav() {
               </BurgerDetailedNav>
             </li>
           ))}
+          <li>Login</li>
+          <li>SignUp</li>
         </ul>
       </BurgerNav>
       <LoginWrapper>
@@ -161,6 +151,7 @@ const QuitButton = styled.div`
   background-size: cover;
   background-position: center;
   z-index: 1000;
+  background-color: white;
 `;
 
 const HideNavWrapper = styled.div`
@@ -222,7 +213,28 @@ const LoginWrapper = styled.div`
     margin: 0 20px;
   }
   @media only screen and (max-width: 1000px) {
-    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    span {
+      display: block;
+      width: 100%;
+      margin: 0;
+      height: 100%;
+      text-align: center;
+      line-height: 2rem;
+      border: 1px solid black;
+    }
+    span:nth-child(1) {
+      border-right-color: white;
+    }
   }
 `;
 
