@@ -12,8 +12,8 @@ export default function HideNav(props) {
       </HideNavTitle>
       <KeyWordWrapper onClick={toggleNav}>
         {hideNavData?.map((el, index) => (
-          <Link to={`/menu/${eachKey}/${el}`}>
-            <li key={hideNavData[index]}>{el}</li>
+          <Link to={`/menu/${eachKey}/${el}`} key={hideNavData[index]}>
+            <li>{el}</li>
           </Link>
         ))}
       </KeyWordWrapper>
