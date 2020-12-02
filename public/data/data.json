@@ -1,11 +1,11 @@
 {
   "nav-category": {
-    "Total": ["FreeBoard", "Life", "OOTD", "Best", "Sales", "Product"],
-    "Classic": ["FreeBoard", "Life", "OOTD", "Best", "Sales", "Product"],
-    "Casual": ["FreeBoard", "Life", "OOTD", "Best", "Sales", "Product"],
-    "Street": ["FreeBoard", "Life", "OOTD", "Best", "Sales", "Product"],
-    "Vintage": ["FreeBoard", "Life", "OOTD", "Best", "Sales", "Product"],
-    "YouTube": ["최겨울", "호호시", "핏더사이즈"]
+    "total": ["freeBoard", "life", "OOTD", "best", "sales", "product"],
+    "classic": ["freeBoard", "life", "OOTD", "best", "sales", "product"],
+    "casual": ["freeBoard", "life", "OOTD", "best", "sales", "product"],
+    "street": ["freeBoard", "life", "OOTD", "best", "sales", "product"],
+    "vintage": ["freeBoard", "life", "OOTD", "best", "sales", "product"],
+    "youtube": ["최겨울", "호호시", "핏더사이즈"]
   },
   "main-data": {
     "small-data": [

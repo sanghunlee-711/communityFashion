@@ -35,6 +35,9 @@ export default function Main() {
 const BigContentsWrapper = styled.section`
   display: flex;
   flex-direction: column;
+  /* @media only screen and (max-width: 1000px) {
+    display: none;
+  } */
 `;
 
 const MainContainer = styled.main`
@@ -42,6 +45,10 @@ const MainContainer = styled.main`
   display: flex;
   justify-content: center;
   background-color: white;
+  @media only screen and (max-width: 1000px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const BigContents = styled.div`
@@ -52,6 +59,11 @@ const BigContents = styled.div`
     width: 100%;
     height: 100%;
   }
+  @media only screen and (max-width: 1000px) {
+    width: 100%;
+    height: 50vh;
+    margin: 0;
+  }
 `;
 
 const SmallContentsWrapper = styled.section`
@@ -60,4 +72,8 @@ const SmallContentsWrapper = styled.section`
   justify-content: space-evenly;
   flex-wrap: wrap;
   width: 50vw;
+  @media only screen and (max-width: 1000px) {
+    flex-direction: column;
+    width: 80vw;
+  }
 `;
