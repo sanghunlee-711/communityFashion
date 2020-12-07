@@ -24,6 +24,9 @@ export default function Login() {
           <span>Sign Up</span>
         </Link>
       </ButtonBox>
+      <ForgotPW>
+        <Link to="/findpw">Forgot Password?</Link>
+      </ForgotPW>
     </LoginWrapper>
   );
 }
@@ -32,6 +35,10 @@ const LoginWrapper = styled.main`
   border: 1px solid black;
   margin: 10vh auto 15vh auto;
   padding: 2vh;
+  border-radius: 3px;
+`;
+const ForgotPW = styled.div`
+  margin: 1vh 0 0 1vh;
 `;
 
 const ButtonBox = styled.section`
@@ -69,10 +76,15 @@ const LoginBox = styled.section`
     input {
       margin-top: 1vh;
       border: 1px solid black;
-      height: 4vh;
+      height: 8vh;
+      font-size: 1.5rem;
       width: 97%;
       padding: 1vh;
       border-radius: 2px;
+
+      @media only screen and (maxwidth: 1000px) {
+        height: 4vh;
+      }
     }
   }
 `;

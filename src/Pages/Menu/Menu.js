@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import SmallContents from "../../Components/Contents/SmallContents";
 
 function Menu(props) {
@@ -26,6 +27,10 @@ function Menu(props) {
         </span>
       </MenuTitle>
       <MenuSmallContentsWrapper>
+        <Upload>
+          <Link to="/upload">Upload</Link>
+        </Upload>
+
         {menuData["small-data"]?.map((el, index) => (
           <SmallContents smallData={el} key={el.title + index} />
         ))}
@@ -50,6 +55,19 @@ const MenuSmallContentsWrapper = styled.section`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+`;
+
+const Upload = styled.div`
+  font-size: 1rem;
+  width: 80vw;
+  text-align: right;
+  margin-bottom: 1rem;
+  a {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
 `;
 
 export default Menu;
