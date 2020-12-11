@@ -23,7 +23,6 @@ export default function HideNav(props) {
 
 const HideNavContainer = styled.section`
   position: absolute;
-
   display: ${(props) => (props.toggle ? "static" : "none")};
   width: 100%;
   z-index: 100;

@@ -2,9 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SmallContents from "../../Components/Contents/SmallContents";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+
+import { burgerToggle, navToggle } from "../../redux/actions/action";
 
 export default function Main() {
   const [mainData, setMainData] = useState([]);
+  const dispatch = useDispatch();
+  const burgercheck = useSelector((state) => state.burgerToggle);
 
   useEffect(() => {
     const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
