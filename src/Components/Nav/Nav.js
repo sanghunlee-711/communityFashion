@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import HideNav from "./HideNav";
+import { useSelector, useDispatch } from "react-redux";
+import { burgerToggle } from "../../redux/actions/action";
 
 export default function Nav() {
   const [navData, setNavData] = useState({});
@@ -10,9 +12,11 @@ export default function Nav() {
   const [hideNavData, setHideNavData] = useState([]);
   const [eachKey, setEachKey] = useState("");
   const [toggle, setToggle] = useState(false);
-  const [burgerToggle, setBurgerToggle] = useState(false);
   const [burgerDetail, setBurgerDetail] = useState("");
 
+  const burgerState = useSelector((state) => state.handleToggle);
+
+  const dispatch = useDispatch();
   useEffect(() => {
     const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
     fetch(`${BaseURL}/data/data.json`, {})
@@ -32,9 +36,6 @@ export default function Nav() {
   const toggleNav = () => {
     setToggle(false);
   };
-  const burgerToggling = () => {
-    setBurgerToggle(!burgerToggle);
-  };
 
   const ShowBurgerDetail = (keyElements) => {
     setBurgerDetail(keyElements.target.innerText);
@@ -42,12 +43,15 @@ export default function Nav() {
 
   return (
     <NavContainer>
-      <BurgerButton onClick={burgerToggling} />
+      <BurgerButton onClick={() => dispatch(burgerToggle(burgerState))} />
       <BurgerNav
-        burgerToggle={burgerToggle}
-        onClick={(el) => showNavData(el.target.innerText)}
+        burgerToggle={burgerState}
+        onClick={(el) => {
+          console.log("/", burgerState);
+          showNavData(el.target.innerText);
+        }}
       >
-        <QuitButton onClick={burgerToggling} />
+        <QuitButton onClick={() => dispatch(burgerToggle(burgerState))} />
         <ul>
           {navKeys?.map((keyElements, index) => (
             <li key={keyElements + index}>
@@ -66,7 +70,7 @@ export default function Nav() {
                   <Link
                     to={`/menu/${keyElements}/${detail}`}
                     key={detail + index}
-                    onClick={burgerToggling}
+                    onClick={() => dispatch(burgerToggle(burgerState))}
                   >
                     <li key={detail + index}>{detail}</li>
                   </Link>
@@ -75,12 +79,18 @@ export default function Nav() {
             </li>
           ))}
           <li>
-            <Link to="/login" onClick={burgerToggling}>
+            <Link
+              to="/login"
+              onClick={() => dispatch(burgerToggle(burgerState))}
+            >
               Login
             </Link>
           </li>
           <li>
-            <Link to="/signup" onClick={burgerToggling}>
+            <Link
+              to="/signup"
+              onClick={() => dispatch(burgerToggle(burgerState))}
+            >
               SignUp
             </Link>
           </li>

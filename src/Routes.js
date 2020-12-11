@@ -8,10 +8,10 @@ import {
 import Main from "./Pages/Main/Main";
 import Nav from "./Components/Nav/Nav";
 import Footer from "./Components/Footer/Footer";
-import Youtube from "./Pages/Youtube/Youtube";
 import Menu from "./Pages/Menu/Menu";
 import Login from "./Pages/Login/Login";
 import SignUp from "./Pages/SignUp/SignUp";
+import Upload from "./Pages/Upload/Upload";
 
 class Routes extends Component {
   render() {
@@ -23,6 +23,7 @@ class Routes extends Component {
           <Route exact path="/menu/:menuId/:menuKey" component={Menu} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/upload" component={Upload} />
         </Switch>
         <Footer />
       </BrowserRouter>

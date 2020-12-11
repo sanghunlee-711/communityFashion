@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Router from "./Routes";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./Styles/GlobalStyle";
@@ -9,8 +11,10 @@ import { ThemeProvider } from "styled-components";
 
 ReactDOM.render(
   <ThemeProvider key={theme} theme={theme}>
-    <Router />
-    <GlobalStyle />
+    <Provider store={store}>
+      <Router />
+      <GlobalStyle />
+    </Provider>
   </ThemeProvider>,
   document.getElementById("root")
 );
