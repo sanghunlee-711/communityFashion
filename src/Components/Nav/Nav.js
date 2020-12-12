@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import HideNav from "./HideNav";
 import { useSelector, useDispatch } from "react-redux";
 import { burgerToggle } from "../../redux/actions/action";
+import { startFetch } from "../../redux/actions/action";
 
 export default function Nav() {
   const [navData, setNavData] = useState({});
@@ -17,6 +18,12 @@ export default function Nav() {
   const burgerState = useSelector((state) => state.handleToggle);
 
   const dispatch = useDispatch();
+  const sagaNavData = useSelector((state) => state.doFetch); //change when it's possible
+
+  useEffect(() => {
+    dispatch(startFetch(2));
+  }, [dispatch]);
+
   useEffect(() => {
     const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
     fetch(`${BaseURL}/data/data.json`, {})
