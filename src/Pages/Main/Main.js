@@ -5,12 +5,12 @@ import SmallContents from "../../Components/Contents/SmallContents";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-import { burgerToggle, navToggle } from "../../redux/actions/action";
+import { startFetch, navToggle } from "../../redux/actions/action";
 
 export default function Main() {
   const [mainData, setMainData] = useState([]);
   const dispatch = useDispatch();
-  const burgercheck = useSelector((state) => state.burgerToggle);
+  const dataCheck = useSelector((state) => state.doFetch);
 
   useEffect(() => {
     const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
@@ -18,16 +18,28 @@ export default function Main() {
     fetch(`${BaseURL}/data/data.json`, {})
       .then((res) => res.json())
       .then((res) => setMainData(res["main-data"]));
-  }, []);
+    console.log("InUseEffect", dispatch(startFetch(2)));
+    console.log("useEffectStates", dataCheck);
+  }, [dispatch]);
+  const checkfunc = () => {
+    console.log("dataCheck In Main", dataCheck.data["main-data"]["big-data"]);
+  };
 
   return (
-    <MainContainer>
+    <MainContainer onClick={checkfunc}>
       <BigContentsWrapper>
-        {mainData["big-data"]?.map((el, index) => (
+        {dataCheck !== undefined && dataCheck.data !== undefined
+          ? dataCheck?.data["main-data"]["big-data"]?.map((el, index) => (
+              <BigContents key={el.title + index}>
+                <img alt="bigPhoto" src={el["image-src"]} />
+              </BigContents>
+            ))
+          : "OnLoading"}
+        {/* {mainData["big-data"]?.map((el, index) => (
           <BigContents key={el.title + index}>
             <img alt="bigPhoto" src={el["image-src"]} />
           </BigContents>
-        ))}
+        ))} */}
       </BigContentsWrapper>
       <SmallContentsWrapper>
         {mainData["small-data"]?.map((el, index) => (

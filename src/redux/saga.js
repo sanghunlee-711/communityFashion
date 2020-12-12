@@ -1,20 +1,36 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
-import { startFetch, processFetch, endFetch } from "../redux/actions/action";
+import {
+  call,
+  put,
+  takeEvery,
+  takeLatest,
+  take,
+  fork,
+} from "redux-saga/effects";
+import {
+  startFetch,
+  processFetch,
+  endFetch,
+  START_FETCH,
+} from "../redux/actions/action";
+import api from "./api";
 
-export function* fetchData(payload) {
-  const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
-
-  try {
-    yield call(startFetch());
-
-    fetch(`${BaseURL}/data/data.json`, {})
-      .then((res) => res.json())
-      .then((res) => {
-        call(processFetch(res["main-data"]));
-      });
-  } catch (err) {
-    yield call(endFetch(err.message));
-    console.log("errMessage", err.message);
-    console.log("err", err);
+function* fetchData() {
+  while (true) {
+    const action = yield take(START_FETCH);
+    console.log("sagaAction?", action);
+    const { payload, error } = yield call(api, action.payload);
+    console.log("sagapayload", payload, "error", action);
+    if (payload && !error) {
+      let checkYield = yield put(processFetch(payload));
+      console.log("checkYield", checkYield);
+      yield put(processFetch(payload));
+    } else {
+      console.log("fail?");
+      yield put(endFetch(error));
+    }
   }
+}
+
+export default function* rootSaga() {
+  yield fork(fetchData);
 }

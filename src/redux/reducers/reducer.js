@@ -12,10 +12,8 @@ export let handleToggle = (state = states.burgerToggleState, action) => {
   switch (action.type) {
     case BURGER_TOGGLE:
       newState = state;
-      console.log("??", action.payload);
       newState = !action.payload;
 
-      console.log("state", state);
       console.log("burgerWork!", newState);
 
       return newState;
@@ -27,16 +25,15 @@ export let handleToggle = (state = states.burgerToggleState, action) => {
 };
 
 export let doFetch = (state = states.data, action) => {
-  let newData;
-  const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
-
   switch (action.type) {
     case START_FETCH:
+      console.log("STARTFETCH?", action.payload);
       return {
         ...state,
         loading: true,
       };
     case PROCESS_FETCH:
+      console.log("processFETCH", action.payload);
       return {
         ...state,
         loading: false,
