@@ -8,25 +8,15 @@ import { useDispatch } from "react-redux";
 import { startFetch, navToggle } from "../../redux/actions/action";
 
 export default function Main() {
-  const [mainData, setMainData] = useState([]);
   const dispatch = useDispatch();
   const dataCheck = useSelector((state) => state.doFetch);
 
   useEffect(() => {
-    const BaseURL = "https://sanghunlee-711.github.io/communityFashion";
-
-    fetch(`${BaseURL}/data/data.json`, {})
-      .then((res) => res.json())
-      .then((res) => setMainData(res["main-data"]));
-    console.log("InUseEffect", dispatch(startFetch(2)));
-    console.log("useEffectStates", dataCheck);
+    dispatch(startFetch(2));
   }, [dispatch]);
-  const checkfunc = () => {
-    console.log("dataCheck In Main", dataCheck.data["main-data"]["big-data"]);
-  };
 
   return (
-    <MainContainer onClick={checkfunc}>
+    <MainContainer>
       <BigContentsWrapper>
         {dataCheck !== undefined && dataCheck.data !== undefined
           ? dataCheck?.data["main-data"]["big-data"]?.map((el, index) => (
@@ -35,16 +25,13 @@ export default function Main() {
               </BigContents>
             ))
           : "OnLoading"}
-        {/* {mainData["big-data"]?.map((el, index) => (
-          <BigContents key={el.title + index}>
-            <img alt="bigPhoto" src={el["image-src"]} />
-          </BigContents>
-        ))} */}
       </BigContentsWrapper>
       <SmallContentsWrapper>
-        {mainData["small-data"]?.map((el, index) => (
-          <SmallContents smallData={el} key={el.title + index} />
-        ))}
+        {dataCheck !== undefined && dataCheck.data !== undefined
+          ? dataCheck?.data["main-data"]["small-data"]?.map((el, index) => (
+              <SmallContents smallData={el} key={el.title + index} />
+            ))
+          : "OnLoading"}
       </SmallContentsWrapper>
     </MainContainer>
   );
