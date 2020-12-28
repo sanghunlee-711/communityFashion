@@ -15,8 +15,12 @@ export default function Main() {
     dispatch(startFetch(2));
   }, [dispatch]);
 
+  const checkFunction = () => {
+    console.log("dataCheck", dataCheck.data);
+  };
+
   return (
-    <MainContainer>
+    <MainContainer onClick={checkFunction}>
       <BigContentsWrapper>
         {dataCheck !== undefined && dataCheck.data !== undefined
           ? dataCheck?.data["main-data"]["big-data"]?.map((el, index) => (

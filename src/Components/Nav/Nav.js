@@ -35,8 +35,9 @@ export default function Nav() {
   }, []);
 
   const showNavData = (key) => {
-    setHideNavData(navData[key]);
-    setEachKey(key);
+    setHideNavData(navData[key[0].toLowerCase() + key.slice(1, key.length)]);
+    setEachKey(key[0].toLowerCase() + key.slice(1, key.length));
+    // detail[0].toUpperCase() + detail.slice(1, detail.length);
     setToggle(true);
   };
 
@@ -79,7 +80,9 @@ export default function Nav() {
                     key={detail + index}
                     onClick={() => dispatch(burgerToggle(burgerState))}
                   >
-                    <li key={detail + index}>{detail}</li>
+                    <li key={detail + index}>
+                      {detail[0].toUpperCase() + detail.slice(1, detail.length)}
+                    </li>
                   </Link>
                 ))}
               </BurgerDetailedNav>
@@ -112,15 +115,25 @@ export default function Nav() {
       </Link>
       <NavWrapper onMouseLeave={toggleNav}>
         <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
-          {navKeys?.map((el, index) => (
-            <li key={el + index}>
-              <Link to={`/menu/${el}/total`}>{el} </Link>
-            </li>
-          ))}
+          {sagaNavData !== undefined && sagaNavData.data !== undefined
+            ? Object.keys(sagaNavData.data["nav-category"])?.map(
+                (el, index) => (
+                  <li key={el + index}>
+                    <Link to={`/menu/${el}/total`}>
+                      {el[0].toUpperCase() + el.slice(1, el.length)}
+                    </Link>
+                  </li>
+                )
+              )
+            : "On Loading"}
         </NavKeyWord>
         <HideNavWrapper>
           <HideNav
-            navData={navData}
+            navData={
+              sagaNavData &&
+              sagaNavData.data &&
+              sagaNavData.data["nav-category"]
+            }
             navKeys={navKeys}
             eachKey={eachKey}
             hideNavData={hideNavData}
