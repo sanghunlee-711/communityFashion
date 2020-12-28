@@ -19,10 +19,10 @@ function* fetchData() {
     const action = yield take(START_FETCH);
     console.log("sagaAction?", action);
     const { payload, error } = yield call(api, action.payload);
-    console.log("sagapayload", payload, "error", action);
+    console.log("sagapayload", payload, "action", action);
     if (payload && !error) {
-      let checkYield = yield put(processFetch(payload));
-      console.log("checkYield", checkYield);
+      // let checkYield = yield put(processFetch(payload));
+      // console.log("checkYield", checkYield);
       yield put(processFetch(payload));
     } else {
       console.log("fail?");
