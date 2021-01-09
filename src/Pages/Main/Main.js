@@ -30,13 +30,22 @@ export default function Main() {
             ))
           : "OnLoading"}
       </BigContentsWrapper>
-      <SmallContentsWrapper>
-        {dataCheck !== undefined && dataCheck.data !== undefined
-          ? dataCheck?.data["main-data"]["small-data"]?.map((el, index) => (
-              <SmallContents smallData={el} key={el.title + index} />
-            ))
-          : "OnLoading"}
-      </SmallContentsWrapper>
+      <SmallContentsContainer>
+        <SmallContentsWrapper>
+          {dataCheck !== undefined && dataCheck.data !== undefined
+            ? dataCheck?.data["main-data"]["small-data"]?.map((el, index) => (
+                <SmallContents smallData={el} key={el.title + index} />
+              ))
+            : "OnLoading"}
+        </SmallContentsWrapper>
+        <SmallContentsWrapper>
+          {dataCheck !== undefined && dataCheck.data !== undefined
+            ? dataCheck?.data["main-data"]["small-data"]?.map((el, index) => (
+                <SmallContents smallData={el} key={el.title + index} />
+              ))
+            : "OnLoading"}
+        </SmallContentsWrapper>
+      </SmallContentsContainer>
     </MainContainer>
   );
 }
@@ -44,6 +53,8 @@ export default function Main() {
 const BigContentsWrapper = styled.section`
   display: flex;
   flex-direction: column;
+  width: 44%;
+
   /* @media only screen and (max-width: 1000px) {
     display: none;
   } */
@@ -60,10 +71,14 @@ const MainContainer = styled.main`
   }
 `;
 
+const SmallContentsContainer = styled.main`
+  display: flex;
+  justify-content: flex-end;
+  width: 56%;
+`;
+
 const BigContents = styled.div`
-  width: 30vw;
   height: 80vh;
-  margin-top: 1vh;
   img {
     width: 100%;
     height: 100%;
@@ -76,11 +91,13 @@ const BigContents = styled.div`
 `;
 
 const SmallContentsWrapper = styled.section`
+  border-left: 1px solid gray;
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
-  flex-wrap: wrap;
-  width: 50vw;
+  flex-direction: column;
+  /* width: 44%; */
+  /* padding: 0 2% 0 0; */
   @media only screen and (max-width: 1000px) {
     flex-direction: column;
     width: 80vw;

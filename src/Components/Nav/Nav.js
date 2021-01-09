@@ -35,8 +35,8 @@ export default function Nav() {
   }, []);
 
   const showNavData = (key) => {
-    setHideNavData(navData[key[0].toLowerCase() + key.slice(1, key.length)]);
-    setEachKey(key[0].toLowerCase() + key.slice(1, key.length));
+    setHideNavData(navData[key[0]?.toLowerCase() + key.slice(1, key.length)]);
+    setEachKey(key[0]?.toLowerCase() + key.slice(1, key.length));
     // detail[0].toUpperCase() + detail.slice(1, detail.length);
     setToggle(true);
   };
@@ -55,7 +55,6 @@ export default function Nav() {
       <BurgerNav
         burgerToggle={burgerState}
         onClick={(el) => {
-          console.log("/", burgerState);
           showNavData(el.target.innerText);
         }}
       >
@@ -106,13 +105,21 @@ export default function Nav() {
           </li>
         </ul>
       </BurgerNav>
-      <LoginWrapper>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">SignUp</Link>
-      </LoginWrapper>
-      <Link to="/">
-        <LogoImage />
-      </Link>
+      <LogoWrapper>
+        <Link to="/">
+          <LogoImage />
+        </Link>
+        <div>
+          <LoginWrapper>
+            <Link to="/mypage">MY PAGE</Link>
+            <Link to="/login">LOGIN</Link>
+            <Link to="/signup">SIGN UP</Link>
+          </LoginWrapper>
+          <Finder>
+            <img alt="FindingPicture" src="" />
+          </Finder>
+        </div>
+      </LogoWrapper>
       <NavWrapper onMouseLeave={toggleNav}>
         <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
           {sagaNavData !== undefined && sagaNavData.data !== undefined
@@ -146,12 +153,20 @@ export default function Nav() {
   );
 }
 
+const Finder = styled.div``;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const NavContainer = styled.nav`
   width: 100vw;
   min-height: 140px;
   background-color: white;
   font-size: 1rem;
   color: gray;
+  font-family: "Xanh Mono", monospace;
 `;
 
 const BurgerTitleKey = styled.span`
@@ -186,6 +201,7 @@ const BurgerDetailedNav = styled.ul`
     props.burgerDetail === props.keyElements ? "30vh" : " 0vh"};
   }
 `;
+
 const QuitButton = styled.div`
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i7Fb7jCfqGSrjSYZpm6z5EJ-QGDcRuHNqA&usqp=CAU");
   position: absolute;
@@ -251,8 +267,8 @@ const NavKeyWord = styled.ul`
 `;
 
 const LoginWrapper = styled.div`
-  position: absolute;
-  right: 10px;
+  /* position: absolute;
+  right: 10px; */
   margin: 10px 0;
   span {
     margin: 0 20px;
