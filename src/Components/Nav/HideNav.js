@@ -51,6 +51,7 @@ const SmallWrapper = styled.span`
 
 const KeyWordWrapper = styled.ul`
   li {
+    cursor: pointer;
     text-align: center;
     margin: 0.5vh 0;
     transition: all 0.5s ease-in-out;
