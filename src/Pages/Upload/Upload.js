@@ -34,13 +34,19 @@ function Upload() {
     console.log(imagefiles);
   };
 
-  const TypingChange = (typing, e) => {
+  const TypingChange = (e) => {
     console.log(e);
     setEditable(true);
   };
 
   const TypingCheck = (e) => {
     // setTyping(e.target);
+  };
+
+  const makeImage = () => {
+    console.log("typedValue");
+    // const ifImg = typedValue.split(".").charAt(typedValue.length);
+    // console.log(ifImg);
   };
 
   return (
@@ -58,6 +64,7 @@ function Upload() {
             onClick={(e) => TypingChange(e)}
             onKeyUp={(e) => TypingCheck(e)}
             contentEditable={editable}
+            onChange={(e) => makeImage(e)}
           >
             {typing}
           </TextArea>
@@ -70,10 +77,13 @@ function Upload() {
 const UploadContainer = styled.section`
   width: 80vw;
   margin: 0 auto;
+  background-color: red;
 `;
 
-const TextArea = styled.div`
+const TextArea = styled.textarea`
   outline: none;
+  color: blue;
+  background-color: green;
 `;
 
 const ImageWrapper = styled.div`

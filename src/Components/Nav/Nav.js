@@ -35,8 +35,8 @@ export default function Nav() {
   }, []);
 
   const showNavData = (key) => {
-    setHideNavData(navData[key[0].toLowerCase() + key.slice(1, key.length)]);
-    setEachKey(key[0].toLowerCase() + key.slice(1, key.length));
+    setHideNavData(navData[key[0]?.toLowerCase() + key.slice(1, key.length)]);
+    setEachKey(key[0]?.toLowerCase() + key.slice(1, key.length));
     // detail[0].toUpperCase() + detail.slice(1, detail.length);
     setToggle(true);
   };
@@ -55,7 +55,6 @@ export default function Nav() {
       <BurgerNav
         burgerToggle={burgerState}
         onClick={(el) => {
-          console.log("/", burgerState);
           showNavData(el.target.innerText);
         }}
       >
@@ -106,13 +105,30 @@ export default function Nav() {
           </li>
         </ul>
       </BurgerNav>
-      <LoginWrapper>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">SignUp</Link>
-      </LoginWrapper>
-      <Link to="/">
-        <LogoImage />
-      </Link>
+      <LogoWrapper>
+        <Link to="/">
+          <LogoImage />
+        </Link>
+        <div>
+          <LoginWrapper>
+            <Link to="/mypage">
+              <i class="fas fa-user-edit"></i>
+              <span>MY PAGE</span>
+            </Link>
+            <Link to="/login">
+              <i class="fas fa-sign-in-alt"></i>
+              <span>LOGIN</span>
+            </Link>
+            <Link to="/signup">
+              <i class="fas fa-user-plus"></i>
+              <span>SIGN UP</span>
+            </Link>
+          </LoginWrapper>
+          <Finder>
+            <i class="fas fa-search fa-2x"></i>
+          </Finder>
+        </div>
+      </LogoWrapper>
       <NavWrapper onMouseLeave={toggleNav}>
         <NavKeyWord onMouseOver={(el) => showNavData(el.target.innerText)}>
           {sagaNavData !== undefined && sagaNavData.data !== undefined
@@ -146,12 +162,27 @@ export default function Nav() {
   );
 }
 
+const Finder = styled.div`
+  float: right;
+  i {
+    width: 47px;
+    height: 47px;
+  }
+`;
+
+const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const NavContainer = styled.nav`
-  width: 100vw;
+  margin: 0 auto;
+  width: 88%;
   min-height: 140px;
   background-color: white;
   font-size: 1rem;
   color: gray;
+  font-family: "Xanh Mono", monospace;
 `;
 
 const BurgerTitleKey = styled.span`
@@ -186,6 +217,7 @@ const BurgerDetailedNav = styled.ul`
     props.burgerDetail === props.keyElements ? "30vh" : " 0vh"};
   }
 `;
+
 const QuitButton = styled.div`
   background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2i7Fb7jCfqGSrjSYZpm6z5EJ-QGDcRuHNqA&usqp=CAU");
   position: absolute;
@@ -230,7 +262,7 @@ const LogoImage = styled.div`
 const NavKeyWord = styled.ul`
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  /* justify-content: flex-start; */
   margin-bottom: 2vh;
   margin-top: 1vh;
   position: relative;
@@ -238,7 +270,7 @@ const NavKeyWord = styled.ul`
   li {
     border-bottom: 2px solid white;
     transition: all 0.5s ease-in-out;
-    width: 100%;
+    width: 40%;
     text-align: center;
     cursor: pointer;
     padding: 1em 0;
@@ -251,12 +283,25 @@ const NavKeyWord = styled.ul`
 `;
 
 const LoginWrapper = styled.div`
-  position: absolute;
-  right: 10px;
-  margin: 10px 0;
-  span {
-    margin: 0 20px;
+  margin: 10px;
+  a {
+    height: 30px;
+    margin-left: 13px;
+    span {
+      margin: 0 auto;
+      font-size: 9px;
+      font-weight: 400;
+      color: #5d5d5d;
+      line-height: 30px;
+    }
+
+    i {
+      margin-right: 10px;
+      width: 17px;
+      height: 17px;
+    }
   }
+
   @media only screen and (max-width: 1000px) {
     position: fixed;
     bottom: 0;
@@ -284,7 +329,7 @@ const LoginWrapper = styled.div`
 `;
 
 const NavWrapper = styled.section`
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
   display: flex;
   flex-direction: column;

@@ -46,8 +46,7 @@ const SmallContentsContents = styled.span`
 `;
 
 const SamllContainer = styled.div`
-  width: 20vw;
-  margin: 1vh;
+  width: 27vw;
   img {
     width: 100%;
     height: 50vh;
