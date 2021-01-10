@@ -111,12 +111,21 @@ export default function Nav() {
         </Link>
         <div>
           <LoginWrapper>
-            <Link to="/mypage">MY PAGE</Link>
-            <Link to="/login">LOGIN</Link>
-            <Link to="/signup">SIGN UP</Link>
+            <Link to="/mypage">
+              <i class="fas fa-user-edit"></i>
+              <span>MY PAGE</span>
+            </Link>
+            <Link to="/login">
+              <i class="fas fa-sign-in-alt"></i>
+              <span>LOGIN</span>
+            </Link>
+            <Link to="/signup">
+              <i class="fas fa-user-plus"></i>
+              <span>SIGN UP</span>
+            </Link>
           </LoginWrapper>
           <Finder>
-            <img alt="FindingPicture" src="" />
+            <i class="fas fa-search fa-2x"></i>
           </Finder>
         </div>
       </LogoWrapper>
@@ -153,7 +162,13 @@ export default function Nav() {
   );
 }
 
-const Finder = styled.div``;
+const Finder = styled.div`
+  float: right;
+  i {
+    width: 47px;
+    height: 47px;
+  }
+`;
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -161,7 +176,8 @@ const LogoWrapper = styled.div`
 `;
 
 const NavContainer = styled.nav`
-  width: 100vw;
+  margin: 0 auto;
+  width: 88%;
   min-height: 140px;
   background-color: white;
   font-size: 1rem;
@@ -246,7 +262,7 @@ const LogoImage = styled.div`
 const NavKeyWord = styled.ul`
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  /* justify-content: flex-start; */
   margin-bottom: 2vh;
   margin-top: 1vh;
   position: relative;
@@ -254,7 +270,7 @@ const NavKeyWord = styled.ul`
   li {
     border-bottom: 2px solid white;
     transition: all 0.5s ease-in-out;
-    width: 100%;
+    width: 40%;
     text-align: center;
     cursor: pointer;
     padding: 1em 0;
@@ -267,12 +283,25 @@ const NavKeyWord = styled.ul`
 `;
 
 const LoginWrapper = styled.div`
-  /* position: absolute;
-  right: 10px; */
-  margin: 10px 0;
-  span {
-    margin: 0 20px;
+  margin: 10px;
+  a {
+    height: 30px;
+    margin-left: 13px;
+    span {
+      margin: 0 auto;
+      font-size: 9px;
+      font-weight: 400;
+      color: #5d5d5d;
+      line-height: 30px;
+    }
+
+    i {
+      margin-right: 10px;
+      width: 17px;
+      height: 17px;
+    }
   }
+
   @media only screen and (max-width: 1000px) {
     position: fixed;
     bottom: 0;
@@ -300,7 +329,7 @@ const LoginWrapper = styled.div`
 `;
 
 const NavWrapper = styled.section`
-  width: 80%;
+  /* width: 80%; */
   height: 100%;
   display: flex;
   flex-direction: column;
